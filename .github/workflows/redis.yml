@@ -1,0 +1,26 @@
+name: Redis
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    services:
+        redis:
+            image: redis
+            options: >-
+                --health-cmd "redis-cli ping"
+                --health-interval 10s
+                --health-timeout 5s
+                --health-retries 5
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Run a one-line script
+      run: redis-cli -h redis -p 6379 incr mycounter
