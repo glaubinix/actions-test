@@ -22,5 +22,8 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
+    - name: Install redis-cli
+      run: sudo apt-get install redis-tools
+      
     - name: Run a one-line script
       run: redis-cli -h redis -p 6379 incr mycounter
