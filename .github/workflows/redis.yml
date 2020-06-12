@@ -24,6 +24,9 @@ jobs:
 
     - name: Install redis-cli
       run: sudo apt-get install redis-tools
+
+    -name: Docker test
+     run: docker --version
       
     - name: Run a one-line script
       run: redis-cli -h 127.0.0.1 -p ${{ job.services.redis.ports['6379'] }} incr mycounter
